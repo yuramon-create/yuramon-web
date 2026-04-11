@@ -5,28 +5,228 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yuramon.com</title>
     <style>
-        /* Ensure the body takes up the full height of the viewport */
-        body, html {
-            height: 100%;
-            margin: 0;
-            display: flex;
-            /* Center the content horizontally and vertically */
-            justify-content: center;
-            align-items: center;
-            /* Background color matching the image's vibe */
-            background-color: #fcfcf4;
+        :root {
+            color-scheme: dark;
+            --bg-start: #0f172a;
+            --bg-end: #1e293b;
+            --panel: rgba(255, 255, 255, 0.12);
+            --panel-border: rgba(255, 255, 255, 0.22);
+            --panel-shadow: 0 30px 90px rgba(15, 23, 42, 0.35);
+            --text: #eef2ff;
+            --accent: #7dd3fc;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            min-height: 100%;
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top left, rgba(125, 211, 252, 0.14), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.18), transparent 25%),
+                        linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle at 20% 20%, rgba(125, 211, 252, 0.18), transparent 18%),
+                              radial-gradient(circle at 80% 15%, rgba(139, 92, 246, 0.14), transparent 16%),
+                              radial-gradient(circle at 50% 90%, rgba(96, 165, 250, 0.10), transparent 20%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 960px);
+            display: grid;
+            gap: 28px;
+            padding: clamp(28px, 4vw, 52px);
+            border-radius: 32px;
+            background: var(--panel);
+            border: 1px solid var(--panel-border);
+            box-shadow: var(--panel-shadow);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            overflow: hidden;
+        }
+
+        .hero {
+            display: grid;
+            gap: 24px;
+            align-items: center;
+            grid-template-columns: 1fr;
+        }
+
+        .hero-copy {
+            display: grid;
+            gap: 18px;
+        }
+
+        .hero-copy h1 {
+            font-size: clamp(1.5rem, 3.2vw, 2.6rem);
+            line-height: 1.05;
+            margin: 0;
+            white-space: nowrap;
+            overflow-wrap: normal;
+        }
+
+        .hero-copy p {
+            margin: 0;
+            max-width: 72ch;
+            color: rgba(238, 242, 255, 0.82);
+            font-size: 1.06rem;
+            line-height: 1.75;
+        }
+
+        .hero-copy .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.1rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--accent);
+            font-size: 1.05rem;
+            letter-spacing: 0.04em;
+            border: 1px solid rgba(125, 211, 252, 0.26);
+            width: fit-content;
+        }
+
+        .hero-visual {
+            display: grid;
+            place-items: center;
+            width: 100%;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 720px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0.04));
+            border: 1px solid rgba(255,255,255,0.14);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 22px 60px rgba(15, 23, 42, 0.2);
+        }
+
+        .card img {
             display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .panel {
+            display: grid;
+            gap: 14px;
+            padding: 22px 26px 24px;
+            color: rgba(238, 242, 255, 0.88);
+        }
+
+        .panel strong {
+            color: white;
+            font-size: 1.05rem;
+        }
+
+        .panel small {
+            color: rgba(226, 232, 240, 0.75);
+        }
+
+        .links {
+            display: grid;
+            gap: 10px;
+        }
+
+        .links a {
+            color: rgba(255, 255, 255, 0.92);
+            text-decoration: none;
+            transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .links a:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+        }
+
+        @media (min-width: 840px) {
+            .hero {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            html, body {
+                padding: 16px;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            .hero {
+                gap: 20px;
+            }
+
+            .hero-copy {
+                gap: 12px;
+                text-align: center;
+            }
+
+            .hero-copy h1 {
+                font-size: 2rem;
+                white-space: normal;
+            }
+
+            .hero-copy .tag {
+                font-size: 1rem;
+                padding: 0.65rem 0.95rem;
+            }
+
+            .card {
+                border-radius: 24px;
+            }
+
+            .links {
+                gap: 8px;
+            }
         }
     </style>
 </head>
 <body>
-
-    <img src="yuramon_640x264up.png" alt="Yuramon Character Illustration" width="640" height="264">
-
+    <main>
+        <section class="hero">
+            <div class="hero-copy">
+                <span class="tag">www.yuramon.com</span>
+                <h1>RETOPOLOGY STUDIO</h1>
+            </div>
+            <div class="hero-visual">
+                <article class="card">
+                    <img src="yuramon_640x264up.png" alt="Yuramon Character Illustration">
+                    <div class="panel">
+                        <strong>Links</strong>
+                        <div class="links">
+                            <a href="https://github.com/yuramon-create" target="_blank" rel="noopener noreferrer">https://github.com/yuramon-create</a>
+                            <a href="https://x.com/yuramon_create" target="_blank" rel="noopener noreferrer">https://x.com/yuramon_create</a>
+                            <a href="https://sketchfab.com/yuramon-create" target="_blank" rel="noopener noreferrer">https://sketchfab.com/yuramon-create</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

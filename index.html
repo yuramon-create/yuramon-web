@@ -71,6 +71,8 @@
         .hero-copy {
             display: grid;
             gap: 18px;
+            justify-items: center;
+            text-align: center;
         }
 
         .hero-copy h1 {
@@ -145,6 +147,8 @@
         .links {
             display: grid;
             gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 6px;
         }
 
         .links a {
@@ -154,6 +158,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: nowrap;
         }
 
         .links a:hover {
@@ -210,7 +215,7 @@
     <main>
         <section class="hero">
             <div class="hero-copy">
-                <span class="tag">www.yuramon.com</span>
+                <a class="tag" href="https://www.yuramon.com" target="_blank" rel="noopener noreferrer">www.yuramon.com</a>
                 <h1>RETOPOLOGY STUDIO</h1>
             </div>
             <div class="hero-visual">

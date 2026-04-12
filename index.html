@@ -354,6 +354,35 @@
 
         .panel small {
             color: rgba(226, 232, 240, 0.75);
+            display: block;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .panel small a {
+            color: rgba(226, 232, 240, 0.95);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            font-weight: 500;
+        }
+
+        .panel small a:hover,
+        .panel small a:focus-visible {
+            color: var(--accent);
+        }
+
+        .mail-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.1rem;
+            height: 1.1rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            font-size: 0.85rem;
         }
 
         .links {
@@ -510,6 +539,8 @@
                                 <span>sketchfab</span>
                             </a>
                         </div>
+                        <small><a href="mailto:contact@yuramon.com"><span class="mail-icon" aria-hidden="true">✉</span>contact@yuramon.com</a></small>
+                        <small>©2026 YURAMON, RETOPOLOGY STUDIO</small>
                     </div>
                 </article>
             </div>
